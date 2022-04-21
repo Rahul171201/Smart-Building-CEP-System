@@ -1,8 +1,5 @@
 #!/usr/bin/env python
 
-"""Generates a stream to Kafka from a time series csv file.
-"""
-
 import argparse
 import csv
 import json
@@ -36,6 +33,13 @@ def main():
     conf = {'bootstrap.servers': "localhost:9092",
             'client.id': socket.gethostname()}
     producer = Producer(conf)
+    
+    '''humidity_average = rdr["Humidity"].mean()
+    temp_average = rdr["Temperature"].mean()
+    light_average = rdr["Light"].mean()
+    co2_average = rdr["CO2"].mean()
+    humidityratio_average = rdr["HumidityRatio"].mean()
+    occupancy_average = rdr["Occupancy"].mean()'''
 
     rdr = csv.reader(open(args.filename))
     next(rdr)  # Skip header
@@ -47,7 +51,12 @@ def main():
 
             if firstline is True:
                 line1 = next(rdr, None)
-                timestamp, value = line1[0], float(line1[1])
+                timestamp= line1[0]
+                
+                value = []
+                for i in range(1,7):
+                	value.append(float(line1[i]));
+                
                 # Convert csv columns to key value pair
                 result = {}
                 result[timestamp] = value
@@ -63,7 +72,12 @@ def main():
                 d2 = parse(line[0])
                 diff = ((d2 - d1).total_seconds())/args.speed
                 time.sleep(diff)
-                timestamp, value = line[0], float(line[1])
+                timestamp = line[0]
+                
+                value = []
+                for i in range(1,7):
+                	value.append(line[i]);
+                
                 result = {}
                 result[timestamp] = value
                 jresult = json.dumps(result)
