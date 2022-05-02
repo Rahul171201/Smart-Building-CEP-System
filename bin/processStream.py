@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# -- coding: utf-8 --
+# -*- coding: utf-8 -*-
 
 import tkinter
 from tkinter import *
@@ -77,7 +77,7 @@ def calc(temp, humid):
 	messageVar2.config(text = str(humid) + "   ",bg='lightgreen')
 	top.update()
 def main():
-    parser = argparse.ArgumentParser(description=_doc_)
+    parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('topic', type=str,
                         help='Name of the Kafka topic to stream.')
 
@@ -133,7 +133,7 @@ def main():
                 hour = w[0][11:13]
                 if(int(hour) != prev):
                 	calc(round(avg_temperature,3),round(avg_humidity,3))
-                	top.update()
+                	#top.update()
                 	prev = int(hour)
                 	avg_temperature = 0.00
                 	sum_temperature = 0.00
@@ -162,7 +162,7 @@ def main():
     
 
 
-if __name__ == '_main_':
+if __name__ == '__main__':
     main()
 
 top.mainloop()
