@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -- coding: utf-8 --
 
-import tkinter
+import tkinter as tk
 from tkinter import *
 import argparse
 import json
@@ -15,26 +15,22 @@ top.geometry("600x400")
 top["bg"] = '#DCEDC2'
 top.title('Aggregated data')
 global frame1
-frame1 = Frame(top, width = 70)
-frame1.config(bg = '#A8E6CE')
+frame1 = Frame(top)
 frame1.pack(padx = 20, pady = 20)
 #frame1.grid(column = 1, row = 1)
 global l1
 l1 = Label(frame1, text='Average Temperature')
-l1.config(bg = '#A8E6CE')
 l1.pack(padx = 5, pady = 5)
 global messageVar1
 messageVar1 = Message(frame1, text = "")
 messageVar1.config(bg='#A8E6CE')
 messageVar1.pack(padx = 5, pady = 5)
 global frame2
-frame2 = Frame(top,width = 70)
-frame2.config(bg = '#A8E6CE')
+frame2 = Frame(top)
 frame2.pack(padx = 20, pady = 20)
 #frame2.grid(column = 2, row = 1)
 global l2
 l2 = Label(frame2, text='Average Humidity')
-l2.config(bg = '#A8E6CE')
 l2.pack(padx = 5, pady = 5)
 global messageVar2
 messageVar2 = Message(frame2, text = "")
@@ -42,6 +38,45 @@ messageVar2.config(bg='#A8E6CE')
 messageVar2.pack(padx = 5,pady = 5)
 #utton = tkinter.Button(top, text='TEMP', width=25, command=top.update())
 #button.pack()
+
+class login(Tk):
+	def __init__(self):
+		super().__init__()
+		self.geometry("700x500")
+		self.resizable(False, False)
+	def Label(self):
+		self.backGroundImage = PhotoImage(file = "building.png")
+		self.backGroundImageLabel =  Label(self, image = self.backGroundImage)
+		self.backGroundImageLabel.place(x=0, y=0)
+		
+		self.canvas = Canvas(self, width=400, height = 330)
+		self.canvas.place(x=150,y=50)
+		
+		self.title = Label(self,text="Login",font="Bold 30")
+		self.title.place(x=300,y=80)
+		
+		self.userName = Label(self,text="User Name",font="8")
+		self.userName.place(x=200,y=150)
+		
+		self.password = Label(self,text="Password",font="8")
+		self.password.place(x=200,y=200)
+	
+	def Entry(self):
+		self.userName=Text(self,borderwidth=0,highlightthickness=0,width=22,height=1)
+		self.userName.place(x=320,y=155)
+		
+		self.Password = Entry(self,borderwidth=0,show="*",highlightthickness=0)
+		self.Password.place(x=320,y=205,width=175,height=20)
+	
+	def Button(self):
+		self.loginButtonImage = PhotoImage(file="login.png")
+		self.loginButton = Button(self,command=self.Login,border=0,text="Login")
+		self.loginButton.config(height=3,width=10,text="Login")
+		self.loginButton.place(x=290,y=250)
+	
+	def Login(self):
+		print(self.userName)
+
 
 def msg_process(msg):
 
@@ -67,14 +102,14 @@ def calc(temp, humid):
 	l1 = Label(frame1, text='Average Temperature')
 	l1.pack()'''
 	#messageVar1 = Message(frame1, text = str(temp))
-	messageVar1.config(text = str(temp) + "   " ,bg='lightgreen')
+	messageVar1.config(text = str(temp),bg='lightgreen')
 	'''messageVar1.pack( )
 	frame2 = Frame(top)
 	frame2.pack()
 	l2 = Label(frame2, text='Average Humidity')
 	l2.pack()'''
 	#messageVar2 = Message(frame2, text = str(humid))
-	messageVar2.config(text = str(humid) + "   ",bg='lightgreen')
+	messageVar2.config(text = str(humid),bg='lightgreen')
 	top.update()
 def main():
     parser = argparse.ArgumentParser(description=_doc_)
@@ -162,7 +197,12 @@ def main():
     
 
 
-if __name__ == '_main_':
+if __name__ == '__main__':
+    Login = login()
+    Login.Label()
+    Login.Entry()
+    Login.Button()
+    Login.mainloop()
     main()
 
 top.mainloop()

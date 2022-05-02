@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+import tkinter
+from tkinter import *
 import argparse
 import csv
 import json
@@ -9,6 +11,43 @@ from dateutil.parser import parse
 from confluent_kafka import Producer
 import socket
 
+class login(Tk):
+	def __init__(self):
+		super().__init__()
+		self.geometry("700x500")
+		self.resizable(False, False)
+	def Label(self):
+		self.backGroundImage = PhotoImage(file = "building.png")
+		self.backGroundImageLabel =  Label(self, image = self.backGroundImage)
+		self.backGroundImageLabel.place(x=0, y=0)
+		
+		self.canvas = Canvas(self, width=400, height = 330)
+		self.canvas.place(x=150,y=50)
+		
+		self.title = Label(self,text="Login",font="Bold 30")
+		self.title.place(x=300,y=80)
+		
+		self.userName = Label(self,text="User Name",font="8")
+		self.userName.place(x=200,y=150)
+		
+		self.password = Label(self,text="Password",font="8")
+		self.password.place(x=200,y=200)
+	
+	def Entry(self):
+		self.userName=Text(self,borderwidth=0,highlightthickness=0,width=22,height=1)
+		self.userName.place(x=320,y=155)
+		
+		self.Password = Entry(self,borderwidth=0,show="*",highlightthickness=0)
+		self.Password.place(x=320,y=205,width=175,height=20)
+	
+	def Button(self):
+		self.loginButtonImage = PhotoImage(file="login.png")
+		self.loginButton = Button(self,command=self.Login,border=0,text="Login")
+		self.loginButton.config(height=3,width=10,text="Login")
+		self.loginButton.place(x=290,y=250)
+	
+	def Login(self):
+		print("Login successful")
 
 def acked(err, msg):
     if err is not None:
@@ -91,4 +130,9 @@ def main():
 
 
 if __name__ == "__main__":
+    Login = login()
+    Login.Label()
+    Login.Entry()
+    Login.Button()
+    Login.mainloop()
     main()
