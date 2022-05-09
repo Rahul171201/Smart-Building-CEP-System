@@ -11,6 +11,9 @@ from dateutil.parser import parse
 from confluent_kafka import Producer
 import socket
 
+username = "rahul"
+password = "123" 
+
 class login(Tk):
 	def __init__(self):
 		super().__init__()
@@ -34,8 +37,9 @@ class login(Tk):
 		self.password.place(x=200,y=200)
 	
 	def Entry(self):
-		self.userName=Text(self,borderwidth=0,highlightthickness=0,width=22,height=1)
+		self.userName=Entry(self,borderwidth=0,highlightthickness=0,width=22)
 		self.userName.place(x=320,y=155)
+		#print(self.userName.get())
 		
 		self.Password = Entry(self,borderwidth=0,show="*",highlightthickness=0)
 		self.Password.place(x=320,y=205,width=175,height=20)
@@ -47,7 +51,12 @@ class login(Tk):
 		self.loginButton.place(x=290,y=250)
 	
 	def Login(self):
-		print("Login successful")
+		print(self.userName.get())
+		if(self.userName.get() == username and self.Password.get() == password):
+			print("Login successful")
+		else:
+			print("Incorrect username or password")
+			exit(0)
 
 def acked(err, msg):
     if err is not None:
