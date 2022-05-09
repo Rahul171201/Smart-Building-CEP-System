@@ -9,9 +9,9 @@ import sys
 import time
 import socket
 from confluent_kafka import Consumer, KafkaError, KafkaException
-#<<<<<<< HEAD
 from tkinter import ttk
 from tkinter.font import Font
+
 global window
 window = Tk()
 bg = PhotoImage(file = "new.png")
@@ -94,7 +94,6 @@ frame4.grid(row=2,column = 0,sticky  = "nsew",padx = 3, pady = 10)
 frame5.grid(row=2,column = 1,sticky  = "nsew",padx = 3, pady = 10)
 frame6.grid(row=2,column = 2,sticky  = "nsew",padx = 3, pady = 10)
 #window.mainloop()
-#=======
 
 def msg_process(msg):
 
@@ -119,15 +118,13 @@ def calc(temp, humid, CO2, HR, light, occupancy):
 	frame1.pack()
 	l1 = Label(frame1, text='Average Temperature')
 	l1.pack()'''
-	#messageVar1 = Message(frame1, text = str(temp))
 	m1.config(text = str(temp) + "   °C")
 	'''messageVar1.pack( )
 	frame2 = Frame(top)
 	frame2.pack()
 	l2 = Label(frame2, text='Average Humidity')
 	l2.pack()'''
-	#messageVar2 = Message(frame2, text = str(humid))
-#<<<<<<< HEAD
+	
 	m2.config(text = str(humid) + "   g/kg")
 	m3.config(text = str(CO2) + "   in ppm")
 	m4.config(text = str(HR) + "   ")
@@ -142,9 +139,7 @@ def calc(temp, humid, CO2, HR, light, occupancy):
 	else:
 		m6.config(text = str(occupancy) + "   ",bg='#65426D')
 	window.update()
-#=======
 
-#>>>>>>> 37025feefa89a7118f2413aede0fa00316f9a4ef
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('topic', type=str,
@@ -159,9 +154,6 @@ def main():
     consumer = Consumer(conf)
 
     running = True
-
-    #top.mainloop()
- 
 	
     prev = 0
     count=0
@@ -175,8 +167,6 @@ def main():
     avg_humidityRatio = 0.00 
     light = 0
     occupancy = 0   
-    # button = tkinter.Button(top, text='TEMP', width=25, command=top.destroy)
-    # button.pack()
 
     try:
         while running:
@@ -190,7 +180,6 @@ def main():
                 if msg.error().code() == KafkaError._PARTITION_EOF:
 
                     # End of partition event
-
                     sys.stderr.write('%% %s [%d] reached end at offset %d\n'
                              % (msg.topic(), msg.partition(),
                             msg.offset()))
@@ -202,16 +191,13 @@ def main():
                     raise KafkaException(msg.error())
             else:
                 w = msg_process(msg)
-                #button = tkinter.Button(top, text=w, width=25,command=top.destroy)
-                #button.pack()
-                #calc_temp(w[0])
                 hour = w[0][11:13]
+                
                 if(int(hour) != prev):
-#<<<<<<< HEAD
+                
                 	calc(round(avg_temperature,2),round(avg_humidity,2),round(avg_CO2,2), round(avg_humidityRatio*100,2), light, occupancy)
-#=======
                 	calc(round(avg_temperature,3),round(avg_humidity,3),round(avg_CO2,3), round(avg_humidityRatio,3), light, occupancy)
-#>>>>>>> 37025feefa89a7118f2413aede0fa00316f9a4ef
+
                 	#top.update()
                 	prev = int(hour)
                 	avg_temperature = 0.00
@@ -240,7 +226,7 @@ def main():
                 	light = w[1][2]
                 	occupancy = w[1][5]
                 print(w[0][11:13])
-    #top.mainloop()
+                
     except KeyboardInterrupt:
 
         pass
