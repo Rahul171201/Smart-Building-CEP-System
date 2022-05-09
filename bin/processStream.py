@@ -9,7 +9,7 @@ import sys
 import time
 import socket
 from confluent_kafka import Consumer, KafkaError, KafkaException
-<<<<<<< HEAD
+#<<<<<<< HEAD
 from tkinter import ttk
 from tkinter.font import Font
 global window
@@ -94,93 +94,7 @@ frame4.grid(row=2,column = 0,sticky  = "nsew",padx = 3, pady = 10)
 frame5.grid(row=2,column = 1,sticky  = "nsew",padx = 3, pady = 10)
 frame6.grid(row=2,column = 2,sticky  = "nsew",padx = 3, pady = 10)
 #window.mainloop()
-=======
-global top
-top = tkinter.Tk()
-top.geometry("1000x1000")
-top["bg"] = '#DCEDC2'
-top.title('Aggregated data')
-global frame1
-frame1 = Frame(top, width = 70)
-frame1.config(bg = '#A8E6CE')
-frame1.pack(padx = 20, pady = 20)
-#frame1.grid(column = 1, row = 1)
-global l1
-l1 = Label(frame1, text='Average Temperature')
-l1.config(bg = '#A8E6CE')
-l1.pack(padx = 5, pady = 5)
-global messageVar1
-messageVar1 = Message(frame1, text = "")
-messageVar1.config(bg='#A8E6CE')
-messageVar1.pack(padx = 5, pady = 5)
-global frame2
-frame2 = Frame(top,width = 70)
-frame2.config(bg = '#A8E6CE')
-frame2.pack(padx = 20, pady = 20)
-#frame2.grid(column = 2, row = 1)
-global l2
-l2 = Label(frame2, text='Average Humidity')
-l2.config(bg = '#A8E6CE')
-l2.pack(padx = 5, pady = 5)
-global messageVar2
-messageVar2 = Message(frame2, text = "")
-messageVar2.config(bg='#A8E6CE')
-messageVar2.pack(padx = 5,pady = 5)
-global frame3
-frame3 = Frame(top,width = 70)
-frame3.config(bg = '#A8E6CE')
-frame3.pack(padx = 20, pady = 20)
-#frame3.grid(column = 2, row = 1)
-global l3
-l3 = Label(frame3, text='Average CO2')
-l3.config(bg = '#A8E6CE')
-l3.pack(padx = 5, pady = 5)
-global messageVar3
-messageVar3 = Message(frame3, text = "")
-messageVar3.config(bg='#A8E6CE')
-messageVar3.pack(padx = 5,pady = 5)
-global frame4
-frame4 = Frame(top,width = 70)
-frame4.config(bg = '#A8E6CE')
-frame4.pack(padx = 20, pady = 20)
-#frame4.grid(column = 2, row = 1)
-global l4
-l4 = Label(frame4, text='Average Humidity Ratio')
-l4.config(bg = '#A8E6CE')
-l4.pack(padx = 5, pady = 5)
-global messageVar4
-messageVar4 = Message(frame4, text = "")
-messageVar4.config(bg='#A8E6CE')
-messageVar4.pack(padx = 5,pady = 5)
-global frame5
-frame5 = Frame(top,width = 70)
-frame5.config(bg = '#A8E6CE')
-frame5.pack(padx = 20, pady = 20)
-#frame5.grid(column = 2, row = 1)
-global l5
-l5 = Label(frame5, text='Light')
-l5.config(bg = '#A8E6CE')
-l5.pack(padx = 5, pady = 5)
-global messageVar5
-messageVar5 = Message(frame5, text = "")
-messageVar5.config(bg='#A8E6CE')
-messageVar5.pack(padx = 5,pady = 5)
-global frame6
-frame6 = Frame(top,width = 70)
-frame6.config(bg = '#A8E6CE')
-frame6.pack(padx = 20, pady = 20)
-#frame4.grid(column = 2, row = 1)
-global l6
-l6 = Label(frame6, text='Occupancy')
-l6.config(bg = '#A8E6CE')
-l6.pack(padx = 5, pady = 5)
-global messageVar6
-messageVar6 = Message(frame6, text = "")
-messageVar6.config(bg='#A8E6CE')
-messageVar6.pack(padx = 5,pady = 5)
-#button = tkinter.Button(top, text='TEMP', width=25, command=top.update())
-#button.pack()
->>>>>>> 37025feefa89a7118f2413aede0fa00316f9a4ef
+#=======
 
 def msg_process(msg):
 
@@ -213,7 +127,7 @@ def calc(temp, humid, CO2, HR, light, occupancy):
 	l2 = Label(frame2, text='Average Humidity')
 	l2.pack()'''
 	#messageVar2 = Message(frame2, text = str(humid))
-<<<<<<< HEAD
+#<<<<<<< HEAD
 	m2.config(text = str(humid) + "   g/kg")
 	m3.config(text = str(CO2) + "   in ppm")
 	m4.config(text = str(HR) + "   ")
@@ -228,22 +142,9 @@ def calc(temp, humid, CO2, HR, light, occupancy):
 	else:
 		m6.config(text = str(occupancy) + "   ",bg='#65426D')
 	window.update()
-=======
-	messageVar2.config(text = str(humid) + "   ",bg='lightgreen')
-	messageVar3.config(text = str(CO2) + "   ",bg='lightgreen')
-	messageVar4.config(text = str(HR) + "   ",bg='lightgreen')
-	light = int(light)
-	occupancy = int(occupancy)
-	if(light>0):
-		messageVar5.config(text = str(light) + "   ",bg='lightgreen')
-	else:
-		messageVar5.config(text = str(light) + "   ",bg='red')
-	if(occupancy>0):
-		messageVar6.config(text = str(occupancy) + "   ",bg='lightgreen')
-	else:
-		messageVar6.config(text = str(occupancy) + "   ",bg='red')
-	top.update()
->>>>>>> 37025feefa89a7118f2413aede0fa00316f9a4ef
+#=======
+
+#>>>>>>> 37025feefa89a7118f2413aede0fa00316f9a4ef
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('topic', type=str,
@@ -306,11 +207,11 @@ def main():
                 #calc_temp(w[0])
                 hour = w[0][11:13]
                 if(int(hour) != prev):
-<<<<<<< HEAD
+#<<<<<<< HEAD
                 	calc(round(avg_temperature,2),round(avg_humidity,2),round(avg_CO2,2), round(avg_humidityRatio*100,2), light, occupancy)
-=======
+#=======
                 	calc(round(avg_temperature,3),round(avg_humidity,3),round(avg_CO2,3), round(avg_humidityRatio,3), light, occupancy)
->>>>>>> 37025feefa89a7118f2413aede0fa00316f9a4ef
+#>>>>>>> 37025feefa89a7118f2413aede0fa00316f9a4ef
                 	#top.update()
                 	prev = int(hour)
                 	avg_temperature = 0.00
